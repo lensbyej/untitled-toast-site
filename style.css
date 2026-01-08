@@ -18,6 +18,7 @@ body {
   line-height: 1.6;
 }
 
+/* Navigation */
 .nav {
   display: flex;
   justify-content: space-between;
@@ -41,6 +42,7 @@ body {
   color: var(--fg);
 }
 
+/* Layout */
 .container {
   max-width: 1000px;
   margin: 0 auto;
@@ -53,11 +55,12 @@ body {
 }
 
 .hero p {
-  color: var(--muted);
   max-width: 600px;
+  color: var(--muted);
   margin-bottom: 32px;
 }
 
+/* Buttons */
 .button {
   display: inline-block;
   padding: 12px 20px;
@@ -71,6 +74,7 @@ body {
   background-color: #111111;
 }
 
+/* Apps */
 .app-card {
   display: flex;
   gap: 32px;
@@ -109,9 +113,25 @@ body {
   color: var(--muted);
 }
 
+/* Footer */
 .footer {
   padding: 40px;
   text-align: center;
   color: var(--muted);
   border-top: 1px solid var(--border);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .container {
+    padding: 60px 20px;
+  }
+
+  .hero h1 {
+    font-size: 36px;
+  }
+
+  .app-card {
+    flex-direction: column;
+  }
 }
