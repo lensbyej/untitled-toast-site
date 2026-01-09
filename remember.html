@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Remember (Beta) — Untitled Toast</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="nav">
+    <div class="logo">Untitled Toast</div>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/apps">Apps</a>
+      <a href="/privacy">Privacy</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Remember <span class="beta">Beta</span></h1>
+      <p class="subtitle">
+        A simple, distraction-free assignment tracker.
+        No accounts. No analytics. Everything stays on your device.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Add Assignment</h2>
+      <form id="assignmentForm">
+        <input type="text" id="className" placeholder="Class name" required />
+        <input type="text" id="title" placeholder="Assignment title" required />
+        <input type="date" id="dueDate" required />
+        <button type="submit">Add</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Your Assignments</h2>
+      <ul id="assignmentList" class="list"></ul>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Remember Web Beta · Data stored locally · Untitled Toast © 2026</p>
+  </footer>
+
+  <script src="remember.js"></script>
+</body>
+</html>
