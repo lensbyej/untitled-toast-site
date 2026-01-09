@@ -23,7 +23,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background: #fff;
+  background: #ffffff;
   border-bottom: 1px solid var(--border);
 }
 
@@ -91,7 +91,7 @@ button {
   border-radius: 10px;
   border: none;
   background: var(--accent);
-  color: #fff;
+  color: #ffffff;
   cursor: pointer;
   font-weight: 500;
 }
