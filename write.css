@@ -14,6 +14,64 @@ html.light-theme {
   --paper: #f5f5f5;
 }
 
+html.rubber-ducky-theme {
+  --bg: #d09421;
+  --text: #ffffff;
+  --muted: #9d6b15;
+  --accent: #0669ed;
+  --paper: #e0a530;
+}
+
+html.pinetop-theme {
+  --bg: #344f1f;
+  --text: #e8f5e9;
+  --muted: #9cbb8f;
+  --accent: #00e091;
+  --paper: #3d5a28;
+}
+
+html.ocean-breeze-theme {
+  --bg: #001b3d;
+  --text: #d4e8f7;
+  --muted: #5ab5d4;
+  --accent: #148aa8;
+  --paper: #002851;
+}
+
+.toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--paper);
+  border: 1px solid var(--muted);
+  color: var(--text);
+  padding: 12px 20px;
+  border-radius: 4px;
+  font-size: 13px;
+  z-index: 300;
+  animation: slideUp 0.3s ease, slideDown 0.3s ease 2.7s forwards;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  to {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+}
+
 * {
   box-sizing: border-box;
 }
