@@ -17,34 +17,99 @@ const citationFormats = {
   Harvard: "[Author], [Year]. [Title]. Available at: [URL].",
 };
 
+// Toast notification system
+function showToast(message) {
+  const toast = document.createElement("div");
+  toast.className = "toast";
+  toast.textContent = message;
+  document.body.appendChild(toast);
+  
+  setTimeout(() => {
+    toast.remove();
+  }, 3000);
+}
+
 // Theme management
-function setTheme(isDark) {
+function setTheme(themeName) {
   const html = document.documentElement;
-  if (isDark) {
-    html.classList.remove("light-theme");
+  
+  // Remove all theme classes
+  html.classList.remove("light-theme", "rubber-ducky-theme", "pinetop-theme", "ocean-breeze-theme");
+  
+  // Remove active class from all theme buttons
+  document.querySelectorAll(".theme-btn").forEach(btn => btn.classList.remove("active"));
+  
+  // Apply new theme
+  if (themeName === "dark") {
+    // Dark is default, no class needed
     document.getElementById("darkThemeBtn").classList.add("active");
-    document.getElementById("lightThemeBtn").classList.remove("active");
-    localStorage.setItem(THEME_KEY, "dark");
-  } else {
+  } else if (themeName === "light") {
     html.classList.add("light-theme");
     document.getElementById("lightThemeBtn").classList.add("active");
-    document.getElementById("darkThemeBtn").classList.remove("active");
-    localStorage.setItem(THEME_KEY, "light");
+  } else if (themeName === "rubber-ducky") {
+    html.classList.add("rubber-ducky-theme");
+    document.getElementById("duckThemeBtn").classList.add("active");
+  } else if (themeName === "pinetop") {
+    html.classList.add("pinetop-theme");
+    document.getElementById("pineThemeBtn").classList.add("active");
+  } else if (themeName === "ocean-breeze") {
+    html.classList.add("ocean-breeze-theme");
+    document.getElementById("oceanThemeBtn").classList.add("active");
+  }
+  
+  localStorage.setItem(THEME_KEY, themeName);
+  
+  // Show toast notification
+  if (themeName !== "dark") {
+    showToast("Themes may be distracting. Stay focused!");
   }
 }
 
 // Load theme on startup
 function loadTheme() {
   const theme = localStorage.getItem(THEME_KEY) || "dark";
-  setTheme(theme === "dark");
+  
+  // Set theme without showing toast on load
+  const html = document.documentElement;
+  html.classList.remove("light-theme", "rubber-ducky-theme", "pinetop-theme", "ocean-breeze-theme");
+  document.querySelectorAll(".theme-btn").forEach(btn => btn.classList.remove("active"));
+  
+  if (theme === "dark") {
+    document.getElementById("darkThemeBtn").classList.add("active");
+  } else if (theme === "light") {
+    html.classList.add("light-theme");
+    document.getElementById("lightThemeBtn").classList.add("active");
+  } else if (theme === "rubber-ducky") {
+    html.classList.add("rubber-ducky-theme");
+    document.getElementById("duckThemeBtn").classList.add("active");
+  } else if (theme === "pinetop") {
+    html.classList.add("pinetop-theme");
+    document.getElementById("pineThemeBtn").classList.add("active");
+  } else if (theme === "ocean-breeze") {
+    html.classList.add("ocean-breeze-theme");
+    document.getElementById("oceanThemeBtn").classList.add("active");
+  }
 }
 
+// Theme button event listeners
 document.getElementById("darkThemeBtn").addEventListener("click", () => {
-  setTheme(true);
+  setTheme("dark");
 });
 
 document.getElementById("lightThemeBtn").addEventListener("click", () => {
-  setTheme(false);
+  setTheme("light");
+});
+
+document.getElementById("duckThemeBtn").addEventListener("click", () => {
+  setTheme("rubber-ducky");
+});
+
+document.getElementById("pineThemeBtn").addEventListener("click", () => {
+  setTheme("pinetop");
+});
+
+document.getElementById("oceanThemeBtn").addEventListener("click", () => {
+  setTheme("ocean-breeze");
 });
 
 // Modal controls
