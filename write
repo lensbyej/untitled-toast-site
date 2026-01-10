@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Write — Untitled Toast</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --text: #eaeaea;
+      --muted: #9a9a9a;
+      --accent: #ffffff;
+      --paper: #111;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Times New Roman", Georgia, serif;
+    }
+
+    .page {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 80px 24px;
+    }
+
+    .editor {
+      outline: none;
+      min-height: 70vh;
+      font-size: 18px;
+      line-height: 1.8;
+    }
+
+    .editor p {
+      margin: 0 0 1.2em 0;
+      text-indent: 2em;
+    }
+
+    .editor p:first-child,
+    .editor p:nth-child(2) {
+      text-indent: 0;
+      margin-bottom: 0.5em;
+    }
+
+    .placeholder {
+      color: var(--muted);
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 60px;
+    }
+
+    @media print {
+      body {
+        background: white;
+        color: black;
+      }
+
+      .page {
+        padding: 1in;
+      }
+
+      footer {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <div
+      id="editor"
+      class="editor"
+      contenteditable="true"
+      spellcheck="true"
+    ></div>
+
+    <footer>
+      Write by Untitled Toast — local, private, distraction-free
+    </footer>
+  </main>
+
+  <script>
+    const editor = document.getElementById("editor");
+    const STORAGE_KEY = "toast-write-content";
+
+    function loadContent() {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        editor.innerHTML = saved;
+      } else {
+        editor.innerHTML =
+          '<p class="placeholder">Start writing your essay…</p>';
+      }
+    }
+
+    function saveContent() {
+      localStorage.setItem(STORAGE_KEY, editor.innerHTML);
+    }
+
+    editor.addEventListener("focus", () => {
+      if (editor.querySelector(".placeholder")) {
+        editor.innerHTML = "";
+      }
+    });
+
+    editor.addEventListener("input", () => {
+      saveContent();
+    });
+
+    loadContent();
+  </script>
+</body>
+</html>
