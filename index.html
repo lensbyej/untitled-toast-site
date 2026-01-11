@@ -10,108 +10,56 @@
 
   <div class="page">
 
-    <section class="title-section">
-      <h1 class="document-title">Untitled Toast</h1>
-      <p style="color: var(--muted); font-size: 14px; max-width: 520px;">
-        Simple, private, and local-first tools designed to help you work without distractions,
-        tracking, or accounts.
+    <header class="header">
+      <h1>Untitled Toast</h1>
+      <p class="muted">
+        Simple, private, local-first tools.  
+        No accounts. No tracking. No cloud dependency.
       </p>
-    </section>
+    </header>
 
-    <!-- Apps Section -->
     <section>
-      <h2 style="font-size: 16px; margin-bottom: 16px;">Apps</h2>
+      <h2>Apps</h2>
 
-      <div style="
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 20px;
-      ">
+      <div class="app-grid">
 
-        <!-- Write Card -->
-        <div style="
-          background: var(--paper);
-          border: 1px solid var(--muted);
-          padding: 16px;
-          border-radius: 4px;
-          display: flex;
-          flex-direction: column;
-          gap: 12px;
-        ">
-          <img
-            src="https://via.placeholder.com/400x220"
-            alt="Write App Placeholder"
-            style="width: 100%; border: 1px solid var(--muted); border-radius: 2px;"
-          />
-
-          <h3 style="margin: 0; font-size: 14px;">Write</h3>
-
-          <p style="margin: 0; font-size: 13px; color: var(--muted); line-height: 1.5;">
-            A secure, local-only essay writer. No accounts, no cloud sync, no tracking.
-            Everything stays on your device.
+        <!-- Write -->
+        <div class="app-card">
+          <img src="https://via.placeholder.com/480x260" alt="Write app preview" />
+          <h3>Write</h3>
+          <p class="app-description">
+            A secure, local-only essay writer designed for focus and privacy.
+            All documents stay on your device.
           </p>
-
-          <div style="display: flex; justify-content: space-between; align-items: center;">
-            <span style="font-size: 12px; color: var(--muted);">Price: Free</span>
-            <a href="/write" class="control-button">Use</a>
+          <div class="app-footer">
+            <span class="muted">Free</span>
+            <a href="/write" class="button">Use</a>
           </div>
         </div>
 
-        <!-- Cite Card -->
-        <div style="
-          background: var(--paper);
-          border: 1px solid var(--muted);
-          padding: 16px;
-          border-radius: 4px;
-          display: flex;
-          flex-direction: column;
-          gap: 12px;
-        ">
-          <img
-            src="https://via.placeholder.com/400x220"
-            alt="Cite App Placeholder"
-            style="width: 100%; border: 1px solid var(--muted); border-radius: 2px;"
-          />
-
-          <h3 style="margin: 0; font-size: 14px;">Cite</h3>
-
-          <p style="margin: 0; font-size: 13px; color: var(--muted); line-height: 1.5;">
-            A private citation generator with the same local-first philosophy as Write.
-            Create, manage, and export citations without sending data anywhere.
+        <!-- Cite -->
+        <div class="app-card">
+          <img src="https://via.placeholder.com/480x260" alt="Cite app preview" />
+          <h3>Cite</h3>
+          <p class="app-description">
+            A private citation creation tool with local storage and no external services.
           </p>
-
-          <div style="display: flex; justify-content: space-between; align-items: center;">
-            <span style="font-size: 12px; color: var(--muted);">Price: Free</span>
-            <a href="/cite" class="control-button">Use</a>
+          <div class="app-footer">
+            <span class="muted">Free</span>
+            <a href="/cite" class="button">Use</a>
           </div>
         </div>
 
-        <!-- Wrds Card -->
-        <div style="
-          background: var(--paper);
-          border: 1px solid var(--muted);
-          padding: 16px;
-          border-radius: 4px;
-          display: flex;
-          flex-direction: column;
-          gap: 12px;
-        ">
-          <img
-            src="https://via.placeholder.com/400x220"
-            alt="Wrds App Placeholder"
-            style="width: 100%; border: 1px solid var(--muted); border-radius: 2px;"
-          />
-
-          <h3 style="margin: 0; font-size: 14px;">Wrds</h3>
-
-          <p style="margin: 0; font-size: 13px; color: var(--muted); line-height: 1.5;">
-            A local-save, private words-per-minute calculator. Practice typing without
-            analytics, accounts, or cloud storage.
+        <!-- Wrds -->
+        <div class="app-card">
+          <img src="https://via.placeholder.com/480x260" alt="Wrds app preview" />
+          <h3>Wrds</h3>
+          <p class="app-description">
+            A local-save WPM calculator for typing practice without analytics or accounts.
           </p>
-
-          <div style="display: flex; justify-content: space-between; align-items: center;">
-            <span style="font-size: 12px; color: var(--muted);">Price: Free</span>
-            <a href="/wrds" class="control-button">Use</a>
+          <div class="app-footer">
+            <span class="muted">Free</span>
+            <a href="/wrds" class="button">Use</a>
           </div>
         </div>
 
@@ -119,7 +67,7 @@
     </section>
 
     <footer>
-      Built with privacy in mind. No accounts. No tracking.
+      Built to respect your work and your privacy.
     </footer>
 
   </div>
