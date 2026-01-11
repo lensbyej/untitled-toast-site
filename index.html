@@ -1,87 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
   <title>Untitled Toast</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/Style.css" />
 </head>
 <body>
-  <header class="nav">
-    <div class="logo">Untitled Toast</div>
-    <nav>
-      <a href="index.html" class="active">Home</a>
-      <a href="apps.html">Apps</a>
-      <a href="privacy.html">Privacy</a>
-    </nav>
-  </header>
 
-  <!-- Hero -->
-  <main class="container hero">
-    <span class="eyebrow">Independent software studio</span>
-    <h1>
-      Thoughtful apps,<br>
-      built to stay out of your way.
-    </h1>
-    <p>
-      Untitled Toast is a small, independent studio focused on creating
-      minimal, privacy-respecting software that helps you stay organized
-      without distraction.
-    </p>
-    <div class="hero-actions">
-      <a href="apps.html" class="button primary">View Apps</a>
-      <a href="privacy.html" class="button ghost">Privacy First</a>
-    </div>
-  </main>
+  <div class="page">
 
-  <!-- Philosophy -->
-  <section class="container section">
-    <h2>Our approach</h2>
-    <div class="grid">
-      <div class="card">
-        <h3>Minimal by default</h3>
-        <p>
-          No clutter, no dark patterns, and no unnecessary features.
-          Every decision is intentional.
-        </p>
-      </div>
-      <div class="card">
-        <h3>Privacy-first</h3>
-        <p>
-          We avoid analytics, tracking, and accounts whenever possible.
-          Your data stays on your device.
-        </p>
-      </div>
-      <div class="card">
-        <h3>Built to last</h3>
-        <p>
-          We favor simple, durable software over trends and short-term growth.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Highlight -->
-  <section class="container section highlight">
-    <h2>In production</h2>
-    <p class="muted">
-      Our first app is currently in active development.
-    </p>
-
-    <div class="highlight-card">
-      <h3>Remember</h3>
-      <p>
-        A calm, focused reminder app designed to help students and individuals
-        keep track of assignments and tasks without stress.
+    <section class="title-section">
+      <h1 class="document-title">Untitled Toast</h1>
+      <p style="color: var(--muted); font-size: 14px; max-width: 520px;">
+        Simple, private, and local-first tools designed to help you work without distractions,
+        tracking, or accounts.
       </p>
-      <span class="badge blue">Coming early 2026 · Google Play</span>
-    </div>
-  </section>
+    </section>
 
-  <footer class="footer">
-    © 2026 Untitled Toast
-  </footer>
+    <!-- Apps Section -->
+    <section>
+      <h2 style="font-size: 16px; margin-bottom: 16px;">Apps</h2>
 
-  <script src="main.js"></script>
+      <div style="
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+      ">
+
+        <!-- Write Card -->
+        <div style="
+          background: var(--paper);
+          border: 1px solid var(--muted);
+          padding: 16px;
+          border-radius: 4px;
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+        ">
+          <img
+            src="https://via.placeholder.com/400x220"
+            alt="Write App Placeholder"
+            style="width: 100%; border: 1px solid var(--muted); border-radius: 2px;"
+          />
+
+          <h3 style="margin: 0; font-size: 14px;">Write</h3>
+
+          <p style="margin: 0; font-size: 13px; color: var(--muted); line-height: 1.5;">
+            A secure, local-only essay writer. No accounts, no cloud sync, no tracking.
+            Everything stays on your device.
+          </p>
+
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 12px; color: var(--muted);">Price: Free</span>
+            <a href="/write" class="control-button">Use</a>
+          </div>
+        </div>
+
+        <!-- Cite Card -->
+        <div style="
+          background: var(--paper);
+          border: 1px solid var(--muted);
+          padding: 16px;
+          border-radius: 4px;
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+        ">
+          <img
+            src="https://via.placeholder.com/400x220"
+            alt="Cite App Placeholder"
+            style="width: 100%; border: 1px solid var(--muted); border-radius: 2px;"
+          />
+
+          <h3 style="margin: 0; font-size: 14px;">Cite</h3>
+
+          <p style="margin: 0; font-size: 13px; color: var(--muted); line-height: 1.5;">
+            A private citation generator with the same local-first philosophy as Write.
+            Create, manage, and export citations without sending data anywhere.
+          </p>
+
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 12px; color: var(--muted);">Price: Free</span>
+            <a href="/cite" class="control-button">Use</a>
+          </div>
+        </div>
+
+        <!-- Wrds Card -->
+        <div style="
+          background: var(--paper);
+          border: 1px solid var(--muted);
+          padding: 16px;
+          border-radius: 4px;
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+        ">
+          <img
+            src="https://via.placeholder.com/400x220"
+            alt="Wrds App Placeholder"
+            style="width: 100%; border: 1px solid var(--muted); border-radius: 2px;"
+          />
+
+          <h3 style="margin: 0; font-size: 14px;">Wrds</h3>
+
+          <p style="margin: 0; font-size: 13px; color: var(--muted); line-height: 1.5;">
+            A local-save, private words-per-minute calculator. Practice typing without
+            analytics, accounts, or cloud storage.
+          </p>
+
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 12px; color: var(--muted);">Price: Free</span>
+            <a href="/wrds" class="control-button">Use</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <footer>
+      Built with privacy in mind. No accounts. No tracking.
+    </footer>
+
+  </div>
+
 </body>
 </html>
