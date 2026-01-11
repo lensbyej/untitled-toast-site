@@ -2,9 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" href="/favicon.ico" />
   <title>Untitled Toast</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.ico" />
+
+  <!-- Styles -->
   <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
@@ -19,6 +23,7 @@
     <nav>
       <a href="/">Home</a>
       <a href="/apps">Apps</a>
+      <a href="/remember-beta">Beta</a>
       <a href="/privacy">Privacy</a>
     </nav>
   </header>
@@ -63,7 +68,7 @@
       </div>
     </section>
 
-    <!-- APPS PREVIEW -->
+    <!-- APPS -->
     <section class="apps">
       <h2>Apps</h2>
 
@@ -97,8 +102,8 @@
             Create and manage citations locally with a privacy-first workflow.
           </p>
           <div class="app-footer">
-            <span class="price">Coming Soon</span>
-            <a href="/coming-soon">
+            <span class="price">Free</span>
+            <a href="/cite">
               <button>Use CITE</button>
             </a>
           </div>
@@ -115,11 +120,40 @@
             A private, local-save WPM calculator for writing practice.
           </p>
           <div class="app-footer">
-            <span class="price">Coming Soon</span>
-            <a href="/coming-soon">
+            <span class="price">Free</span>
+            <a href="/wrds">
               <button>Use WRDS</button>
             </a>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEAM -->
+    <section class="apps">
+      <h2>Team</h2>
+
+      <div class="apps-grid">
+        <!-- EJ -->
+        <div class="app-card" style="text-align: center;">
+          <img
+            src="https://i.ibb.co/2fm35XX/image.jpg"
+            alt="EJ"
+            style="border-radius: 50%; height: 96px; width: 96px; object-fit: cover;"
+          />
+          <h3 style="margin-top: 1rem;">EJ</h3>
+          <p>Founder</p>
+        </div>
+
+        <!-- Joshua -->
+        <div class="app-card" style="text-align: center;">
+          <img
+            src="https://i.ibb.co/4Zy8PvnR/ab67616d0000b273b340c3c62478b6961d7f3c34.jpg"
+            alt="Joshua"
+            style="border-radius: 50%; height: 96px; width: 96px; object-fit: cover;"
+          />
+          <h3 style="margin-top: 1rem;">Joshua</h3>
+          <p>Web Developer</p>
         </div>
       </div>
     </section>
@@ -130,5 +164,7 @@
       Untitled Toast © 2026 · Built with intent
     </p>
   </footer>
+
+  <script src="/script.js"></script>
 </body>
 </html>
