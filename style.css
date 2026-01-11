@@ -1,49 +1,18 @@
 /* =========================
-   THEME VARIABLES
+   GLOBAL THEME
    ========================= */
 
 :root {
-  --bg: #0a0a0a;
-  --text: #eaeaea;
+  --bg: #0d0d0d;
+  --surface: #141414;
+  --border: #2a2a2a;
+  --text: #e6e6e6;
   --muted: #9a9a9a;
   --accent: #ffffff;
-  --paper: #111;
-}
-
-html.light-theme {
-  --bg: #ffffff;
-  --text: #1a1a1a;
-  --muted: #666666;
-  --accent: #000000;
-  --paper: #f5f5f5;
-}
-
-html.rubber-ducky-theme {
-  --bg: #d09421;
-  --text: #ffffff;
-  --muted: #9d6b15;
-  --accent: #0669ed;
-  --paper: #e0a530;
-}
-
-html.pinetop-theme {
-  --bg: #344f1f;
-  --text: #e8f5e9;
-  --muted: #9cbb8f;
-  --accent: #00e091;
-  --paper: #3d5a28;
-}
-
-html.ocean-breeze-theme {
-  --bg: #001b3d;
-  --text: #d4e8f7;
-  --muted: #5ab5d4;
-  --accent: #148aa8;
-  --paper: #002851;
 }
 
 /* =========================
-   BASE RESET
+   RESET
    ========================= */
 
 * {
@@ -52,15 +21,19 @@ html.ocean-breeze-theme {
 
 html,
 body {
-  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
+/* =========================
+   BASE
+   ========================= */
+
 body {
-  margin: 0;
   background: var(--bg);
   color: var(--text);
   font-family: "Times New Roman", Georgia, serif;
-  transition: background 0.3s, color 0.3s;
+  line-height: 1.6;
 }
 
 /* =========================
@@ -68,13 +41,13 @@ body {
    ========================= */
 
 .page {
-  max-width: 780px;
+  max-width: 820px;
   margin: 0 auto;
   padding: 80px 24px;
 }
 
 section {
-  margin-bottom: 48px;
+  margin-bottom: 56px;
 }
 
 /* =========================
@@ -86,27 +59,25 @@ h2,
 h3 {
   margin: 0;
   font-weight: bold;
-  color: var(--text);
 }
 
 h1 {
-  font-size: 28px;
-  margin-bottom: 10px;
+  font-size: 30px;
+  margin-bottom: 12px;
 }
 
 h2 {
-  font-size: 16px;
-  margin-bottom: 16px;
+  font-size: 18px;
+  margin-bottom: 20px;
 }
 
 h3 {
-  font-size: 14px;
+  font-size: 15px;
 }
 
 p {
+  margin: 0;
   font-size: 14px;
-  line-height: 1.6;
-  color: var(--text);
 }
 
 .muted {
@@ -114,77 +85,81 @@ p {
 }
 
 /* =========================
-   DIVIDERS
+   HEADER
    ========================= */
 
-.title-section {
-  margin-bottom: 32px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid var(--muted);
+.header {
+  margin-bottom: 40px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
 }
 
 /* =========================
-   BUTTONS & LINKS
-   ========================= */
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.control-button {
-  background: none;
-  border: 1px solid var(--muted);
-  color: var(--muted);
-  padding: 6px 12px;
-  font-size: 13px;
-  cursor: pointer;
-  font-family: "Times New Roman", Georgia, serif;
-  transition: all 0.2s;
-}
-
-.control-button:hover {
-  color: var(--text);
-  border-color: var(--text);
-}
-
-/* =========================
-   APP GRID & CARDS
+   APP GRID
    ========================= */
 
 .app-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
 }
 
 .app-card {
-  background: var(--paper);
-  border: 1px solid var(--muted);
-  padding: 16px;
-  border-radius: 4px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 18px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
   transition: border-color 0.2s;
 }
 
 .app-card:hover {
-  border-color: var(--text);
+  border-color: var(--accent);
 }
 
 .app-card img {
   width: 100%;
-  border: 1px solid var(--muted);
-  border-radius: 2px;
+  height: auto;
+  border: 1px solid var(--border);
 }
 
-.app-meta {
+/* =========================
+   APP META
+   ========================= */
+
+.app-description {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.app-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: auto;
   font-size: 12px;
+}
+
+/* =========================
+   BUTTONS
+   ========================= */
+
+.button {
+  background: none;
+  border: 1px solid var(--border);
   color: var(--muted);
+  padding: 6px 14px;
+  font-size: 13px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+
+.button:hover {
+  color: var(--text);
+  border-color: var(--text);
 }
 
 /* =========================
@@ -193,21 +168,9 @@ a {
 
 footer {
   text-align: center;
-  color: var(--muted);
   font-size: 12px;
-  margin-top: 60px;
-}
-
-/* =========================
-   UTILITIES
-   ========================= */
-
-.hidden {
-  display: none;
-}
-
-.center {
-  text-align: center;
+  color: var(--muted);
+  margin-top: 80px;
 }
 
 /* =========================
@@ -231,5 +194,6 @@ footer {
 
   * {
     color: black !important;
+    border-color: black !important;
   }
 }
