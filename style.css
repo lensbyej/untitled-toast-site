@@ -1,157 +1,163 @@
-:root {
-  --bg: #000000;
-  --card: #0b0b0b;
-  --text: #ffffff;
-  --muted: #9ca3af;
-  --accent: #ef4444;
-  --border: #1f2937;
-}
-
+/* -----------------------------
+   Base
+-------------------------------- */
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: "Telegraf", "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  background: var(--bg);
-  color: var(--text);
+  font-family: "Inter", system-ui, sans-serif;
+  background: #0a0a0a;
+  color: #ededed;
+  line-height: 1.5;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* -----------------------------
+   Layout
+-------------------------------- */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
 }
 
 .nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.2rem 2rem;
-  border-bottom: 1px solid var(--border);
+  padding: 1.25rem 2rem;
 }
 
-.logo {
-  font-weight: 800;
-  letter-spacing: 0.5px;
-}
-
-.nav a {
+.nav nav a {
   margin-left: 1.5rem;
-  text-decoration: none;
-  color: var(--muted);
-  font-weight: 600;
+  opacity: 0.8;
 }
 
-.nav a:hover {
-  color: var(--text);
+.nav nav a:hover {
+  opacity: 1;
 }
 
-.container {
-  max-width: 1100px;
-  margin: 4rem auto;
-  padding: 0 1.5rem;
-}
-
-.hero h1 {
+/* -----------------------------
+   Typography
+-------------------------------- */
+h1 {
   font-size: 3rem;
-  font-weight: 800;
+  font-weight: 700;
   margin-bottom: 1rem;
-  line-height: 1.1;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+h3 {
+  margin: 0.75rem 0 0.25rem;
 }
 
 .subtitle {
-  color: var(--muted);
-  max-width: 680px;
-  line-height: 1.7;
-  font-size: 1.05rem;
+  max-width: 600px;
+  color: #b5b5b5;
 }
 
+/* -----------------------------
+   Grids
+-------------------------------- */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 1.5rem;
-  margin: 4rem 0;
-}
-
-.info-card {
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 1.5rem;
-  background: var(--card);
-}
-
-.info-card h3 {
-  margin-top: 0;
-  font-weight: 700;
-}
-
-.apps h2 {
-  font-size: 2rem;
-  font-weight: 800;
-  margin-bottom: 2rem;
 }
 
 .apps-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.75rem;
 }
 
-.app-card {
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  overflow: hidden;
-  background: var(--card);
-  display: flex;
-  flex-direction: column;
+/* -----------------------------
+   Cards
+-------------------------------- */
+.info-card,
+.app-card,
+.team-card {
+  background: #111;
+  border: 1px solid #1f1f1f;
+  border-radius: 12px;
+  padding: 1.5rem;
 }
 
+/* App cards only */
 .app-card img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-bottom: 1px solid var(--border);
-}
-
-.app-card h3 {
-  margin: 1.25rem 1.25rem 0.5rem;
-  font-weight: 800;
-}
-
-.app-card p {
-  margin: 0 1.25rem 1.25rem;
-  color: var(--muted);
-  line-height: 1.6;
+  height: 48px;
+  margin-bottom: 1rem;
 }
 
 .app-footer {
-  margin-top: auto;
-  padding: 1.25rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: 1px solid var(--border);
+  margin-top: 1.25rem;
 }
 
 .price {
-  font-weight: 700;
+  opacity: 0.7;
 }
 
+/* -----------------------------
+   Team Cards
+-------------------------------- */
+.team-card {
+  text-align: center;
+}
+
+.team-avatar {
+  height: 96px;
+  width: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
+/* Glow effects */
+.glow-blue {
+  color: #7dd3fc;
+  text-shadow: 0 0 12px rgba(125, 211, 252, 0.5);
+}
+
+.glow-purple {
+  color: #c084fc;
+  text-shadow: 0 0 12px rgba(192, 132, 252, 0.5);
+}
+
+/* -----------------------------
+   Buttons
+-------------------------------- */
 button {
+  background: #fff;
+  color: #000;
+  border: none;
   padding: 0.6rem 1rem;
-  border-radius: 999px;
-  border: 1px solid var(--accent);
-  background: transparent;
-  color: var(--text);
-  font-weight: 700;
+  border-radius: 8px;
+  font-weight: 600;
   cursor: pointer;
 }
 
 button:hover {
-  background: var(--accent);
+  opacity: 0.9;
 }
 
+/* -----------------------------
+   Footer
+-------------------------------- */
 .footer {
-  margin-top: 5rem;
-  padding: 3rem 1.5rem;
   text-align: center;
-  border-top: 1px solid var(--border);
-  color: var(--muted);
-  font-size: 0.9rem;
+  padding: 2rem;
+  opacity: 0.6;
 }
