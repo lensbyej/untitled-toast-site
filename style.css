@@ -1,3 +1,6 @@
+/* -----------------------------
+   Theme Variables
+-------------------------------- */
 :root {
   --bg: #000000;
   --card: #0a0a0a;
@@ -7,15 +10,33 @@
   --border: #1f2937;
 }
 
+/* -----------------------------
+   Base
+-------------------------------- */
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Inter", system-ui, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
   background: var(--bg);
   color: var(--text);
+  line-height: 1.5;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* -----------------------------
+   Layout
+-------------------------------- */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
 }
 
 .nav {
@@ -23,7 +44,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background: #000000;
+  background: #000;
   border-bottom: 1px solid var(--border);
 }
 
@@ -32,68 +53,103 @@ body {
   letter-spacing: 0.2px;
 }
 
-.nav a {
-  margin-left: 1.25rem;
-  text-decoration: none;
-  color: var(--muted);
+.nav nav a {
+  margin-left: 1.5rem;
+  opacity: 0.8;
 }
 
-.nav a:hover {
-  color: var(--text);
+.nav nav a:hover {
+  opacity: 1;
 }
 
-.container {
-  max-width: 760px;
-  margin: 3rem auto;
-  padding: 0 1.25rem;
+/* -----------------------------
+   Typography
+-------------------------------- */
+h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
 }
 
-.hero {
-  margin-bottom: 2.5rem;
+h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
 }
 
-.hero h1 {
-  font-size: 2.4rem;
-  margin-bottom: 0.5rem;
-}
-
-.beta {
-  font-size: 0.85rem;
-  color: var(--accent);
-  font-weight: 500;
+h3 {
+  margin: 0.75rem 0 0.25rem;
 }
 
 .subtitle {
-  color: var(--muted);
   max-width: 620px;
-  line-height: 1.6;
+  color: var(--muted);
 }
 
-.card {
+/* -----------------------------
+   Grids
+-------------------------------- */
+.grid,
+.apps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.75rem;
+}
+
+/* -----------------------------
+   Cards
+-------------------------------- */
+.info-card,
+.app-card,
+.team-card {
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: 14px;
   padding: 1.5rem;
-  margin-bottom: 1.75rem;
 }
 
-.card h2 {
-  margin-top: 0;
-  font-size: 1.15rem;
+.app-card img {
+  height: 48px;
+  margin-bottom: 1rem;
 }
 
-form {
-  display: grid;
-  gap: 0.8rem;
+.app-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.25rem;
 }
 
+.price {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* -----------------------------
+   Buttons
+-------------------------------- */
+button {
+  padding: 0.65rem 1rem;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: #111827;
+  color: var(--text);
+  font-weight: 500;
+  cursor: pointer;
+}
+
+button:hover {
+  border-color: var(--accent);
+}
+
+/* -----------------------------
+   Inputs
+-------------------------------- */
 input {
   padding: 0.7rem;
   border-radius: 10px;
   border: 1px solid var(--border);
-  background: #000000;
+  background: #000;
   color: var(--text);
-  font-size: 0.95rem;
 }
 
 input::placeholder {
@@ -105,60 +161,39 @@ input:focus {
   border-color: var(--accent);
 }
 
-button {
-  padding: 0.7rem;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-  background: #111827;
-  color: var(--text);
-  cursor: pointer;
-  font-weight: 500;
+/* -----------------------------
+   Team
+-------------------------------- */
+.team-card {
+  text-align: center;
 }
 
-button:hover {
-  border-color: var(--accent);
+.team-avatar {
+  height: 96px;
+  width: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
 }
 
-.list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+/* Glow effects */
+.glow-blue {
+  color: #7dd3fc;
+  text-shadow: 0 0 12px rgba(125, 211, 252, 0.5);
 }
 
-.list-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.9rem 0;
-  border-bottom: 1px solid var(--border);
+.glow-purple {
+  color: #c084fc;
+  text-shadow: 0 0 12px rgba(192, 132, 252, 0.5);
 }
 
-.meta {
-  font-size: 0.85rem;
-  color: var(--muted);
-}
-
-.delete {
-  background: none;
-  border: none;
-  color: var(--muted);
-  font-size: 1.1rem;
-  cursor: pointer;
-}
-
-.delete:hover {
-  color: #ef4444;
-}
-
-.empty {
-  color: var(--muted);
-  font-style: italic;
-}
-
+/* -----------------------------
+   Footer
+-------------------------------- */
 .footer {
   text-align: center;
   padding: 3rem 1rem;
   color: var(--muted);
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   border-top: 1px solid var(--border);
 }
