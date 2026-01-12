@@ -1,50 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Apps · Untitled Toast</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <title>Apps — Untitled Toast</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
   <header class="nav">
-    <div class="logo">Untitled Toast</div>
+    <div class="logo">
+      <img
+        src="https://i.ibb.co/nsvzDVrG/Toast-Icon.png"
+        alt="Untitled Toast Logo"
+        style="height: 32px;"
+      />
+    </div>
     <nav>
-      <a href="index.html">Home</a>
-      <a href="apps.html">Apps</a>
-      <a href="privacy.html">Privacy</a>
+      <a href="/">Home</a>
+      <a href="/apps">Apps</a>
+      <a href="/remember-beta">Beta</a>
+      <a href="/privacy">Privacy</a>
     </nav>
   </header>
 
   <main class="container">
-    <h1>Apps</h1>
+    <section class="hero">
+      <h1>Apps</h1>
+      <p class="subtitle">
+        Focused tools built with privacy first. All apps run locally and are
+        free to use.
+      </p>
+    </section>
 
-    <div class="app-card">
-      <a href="https://ibb.co/cXk1fjtk" target="_blank" rel="noopener">
-        <img
-          src="https://i.ibb.co/Xkjb0qpj/REMEMBER.png"
-          alt="Remember"
-          class="app-image"
-          border="0"
-        >
-      </a>
+    <section class="apps">
+      <div class="apps-grid">
+        <!-- WRITE -->
+        <div class="app-card">
+          <img
+            src="https://i.ibb.co/kg3Dzkn5/Cite-Icon.png"
+            alt="WRITE App Icon"
+          />
+          <h3>WRITE</h3>
+          <p>
+            A secure, local-only essay and long-form writing tool designed for
+            clarity and focus.
+          </p>
+          <div class="app-footer">
+            <span class="price">Free</span>
+            <a href="/write">
+              <button>Use WRITE</button>
+            </a>
+          </div>
+        </div>
 
-      <div class="app-info">
-        <h2>Remember</h2>
-        <p>
-          A simple assignment and task reminder app designed to reduce stress
-          and keep you focused.
-        </p>
-        <span class="badge">Coming Early 2026</span>
-        <p class="platform">Available on Google Play</p>
+        <!-- CITE -->
+        <div class="app-card">
+          <img
+            src="https://i.ibb.co/9kd7T76Q/Cite-Icon-3.png"
+            alt="CITE App Icon"
+          />
+          <h3>CITE</h3>
+          <p>
+            A privacy-first citation generator with local storage and no
+            external tracking.
+          </p>
+          <div class="app-footer">
+            <span class="price">Free</span>
+            <a href="/cite">
+              <button>Use CITE</button>
+            </a>
+          </div>
+        </div>
+
+        <!-- WRDS -->
+        <div class="app-card">
+          <img
+            src="https://i.ibb.co/9k4fCsS5/Cite-Icon-2.png"
+            alt="WRDS App Icon"
+          />
+          <h3>WRDS</h3>
+          <p>
+            A local-save WPM calculator built for private writing practice.
+          </p>
+          <div class="app-footer">
+            <span class="price">Free</span>
+            <a href="/wrds">
+              <button>Use WRDS</button>
+            </a>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
   </main>
 
   <footer class="footer">
-    © 2026 Untitled Toast
+    <p>
+      Untitled Toast © 2026
+    </p>
   </footer>
-
-  <script src="main.js"></script>
 </body>
 </html>

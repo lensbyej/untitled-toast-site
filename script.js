@@ -1,35 +1,75 @@
-document.addEventListener('DOMContentLoaded', () => {
-    
-    // 1. Reveal Elements on Scroll
-    const observerOptions = {
-        threshold: 0.1 // Trigger when 10% of the element is visible
-    };
+// Untitled Toast – subtle UI motion
+// No tracking, no analytics, no external dependencies
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                // Optional: Stop observing once it has faded in
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-
-    const elements = document.querySelectorAll('.fade-in');
-    elements.forEach(el => observer.observe(el));
-    
-    // 2. Smooth Scrolling for Links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-            
-            if (targetElement) {
-                targetElement.scrollIntoView({
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
+document.addEventListener("DOMContentLoaded", () => {
+  fadeInOnLoad();
+  revealOnScroll();
+  addButtonHover();
 });
+
+/* -----------------------------
+   Fade in page on load
+-------------------------------- */
+function fadeInOnLoad() {
+  document.body.style.opacity = "0";
+  document.body.style.transition = "opacity 0.4s ease";
+
+  requestAnimationFrame(() => {
+    document.body.style.opacity = "1";
+  });
+}
+
+/* -----------------------------
+   Reveal cards on scroll
+-------------------------------- */
+function revealOnScroll() {
+  const elements = document.querySelectorAll(
+    ".info-card, .app-card"
+  );
+
+  if (!("IntersectionObserver" in window)) {
+    elements.forEach(el => el.style.opacity = "1");
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.transform = "translateY(0)";
+          entry.target.style.opacity = "1";
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.1
+    }
+  );
+
+  elements.forEach(el => {
+    el.style.opacity = "0";
+    el.style.transform = "translateY(12px)";
+    el.style.transition =
+      "opacity 0.4s ease, transform 0.4s ease";
+    observer.observe(el);
+  });
+}
+
+/* -----------------------------
+   Button micro-interaction
+-------------------------------- */
+function addButtonHover() {
+  const buttons = document.querySelectorAll("button");
+
+  buttons.forEach(button => {
+    button.addEventListener("mouseenter", () => {
+      button.style.transform = "translateY(-1px)";
+      button.style.transition = "transform 0.15s ease";
+    });
+
+    button.addEventListener("mouseleave", () => {
+      button.style.transform = "translateY(0)";
+    });
+  });
+}
