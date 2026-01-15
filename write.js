@@ -36,26 +36,21 @@ function setTheme(themeName) {
   // Remove all theme classes
   html.classList.remove("light-theme", "rubber-ducky-theme", "pinetop-theme", "ocean-breeze-theme");
   
-  // Remove active class from all theme buttons
-  document.querySelectorAll(".theme-btn").forEach(btn => btn.classList.remove("active"));
-  
   // Apply new theme
   if (themeName === "dark") {
     // Dark is default, no class needed
-    document.getElementById("darkThemeBtn").classList.add("active");
   } else if (themeName === "light") {
     html.classList.add("light-theme");
-    document.getElementById("lightThemeBtn").classList.add("active");
   } else if (themeName === "rubber-ducky") {
     html.classList.add("rubber-ducky-theme");
-    document.getElementById("duckThemeBtn").classList.add("active");
   } else if (themeName === "pinetop") {
     html.classList.add("pinetop-theme");
-    document.getElementById("pineThemeBtn").classList.add("active");
   } else if (themeName === "ocean-breeze") {
     html.classList.add("ocean-breeze-theme");
-    document.getElementById("oceanThemeBtn").classList.add("active");
   }
+  
+  // Update dropdown to reflect current theme
+  document.getElementById("themeSelect").value = themeName;
   
   localStorage.setItem(THEME_KEY, themeName);
   
@@ -72,44 +67,26 @@ function loadTheme() {
   // Set theme without showing toast on load
   const html = document.documentElement;
   html.classList.remove("light-theme", "rubber-ducky-theme", "pinetop-theme", "ocean-breeze-theme");
-  document.querySelectorAll(".theme-btn").forEach(btn => btn.classList.remove("active"));
   
   if (theme === "dark") {
-    document.getElementById("darkThemeBtn").classList.add("active");
+    // Dark is default, no class needed
   } else if (theme === "light") {
     html.classList.add("light-theme");
-    document.getElementById("lightThemeBtn").classList.add("active");
   } else if (theme === "rubber-ducky") {
     html.classList.add("rubber-ducky-theme");
-    document.getElementById("duckThemeBtn").classList.add("active");
   } else if (theme === "pinetop") {
     html.classList.add("pinetop-theme");
-    document.getElementById("pineThemeBtn").classList.add("active");
   } else if (theme === "ocean-breeze") {
     html.classList.add("ocean-breeze-theme");
-    document.getElementById("oceanThemeBtn").classList.add("active");
   }
+  
+  // Update dropdown to reflect current theme
+  document.getElementById("themeSelect").value = theme;
 }
 
-// Theme button event listeners
-document.getElementById("darkThemeBtn").addEventListener("click", () => {
-  setTheme("dark");
-});
-
-document.getElementById("lightThemeBtn").addEventListener("click", () => {
-  setTheme("light");
-});
-
-document.getElementById("duckThemeBtn").addEventListener("click", () => {
-  setTheme("rubber-ducky");
-});
-
-document.getElementById("pineThemeBtn").addEventListener("click", () => {
-  setTheme("pinetop");
-});
-
-document.getElementById("oceanThemeBtn").addEventListener("click", () => {
-  setTheme("ocean-breeze");
+// Theme dropdown event listener
+document.getElementById("themeSelect").addEventListener("change", (e) => {
+  setTheme(e.target.value);
 });
 
 // Modal controls
@@ -183,7 +160,11 @@ function updateStats() {
   const words = text.trim().split(/\s+/).filter((w) => w.length > 0);
   const wordCount = words.length;
   const charCount = text.length;
-  const readingTimeMinutes = Math.ceil(wordCount / 200);
+  
+  // Improved reading time calculation
+  // Average adult reads 200-250 words per minute
+  // Using 225 as average, with minimum 1 minute
+  const readingTimeMinutes = Math.max(1, Math.round(wordCount / 225));
 
   document.getElementById("wordCount").textContent = wordCount;
   document.getElementById("charCount").textContent = charCount;
@@ -296,6 +277,81 @@ function exportPdf() {
     .save();
 }
 
+// Image upload
+function insertImage() {
+  document.getElementById("imageInput").click();
+}
+
+document.getElementById("imageInput").addEventListener("change", (e) => {
+  const file = e.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const uniqueId = "img-" + Date.now();
+      const imgHtml = `<div class="image-wrapper" data-img-id="${uniqueId}"><img src="${event.target.result}" style="max-width: 100%; height: auto; display: block;" /><div class="image-controls"><button class="img-btn img-up" onclick="moveImageUp(event)" title="Move up">↑</button><button class="img-btn img-down" onclick="moveImageDown(event)" title="Move down">↓</button><button class="img-btn img-delete" onclick="deleteImage(event)" title="Delete">✕</button></div></div>`;
+      document.execCommand("insertHTML", false, imgHtml);
+      saveContent();
+    };
+    reader.readAsDataURL(file);
+  }
+});
+
+// Table insertion
+function insertTable() {
+  const rows = prompt("Number of rows:", "2");
+  if (rows === null) return;
+  
+  const cols = prompt("Number of columns:", "3");
+  if (cols === null) return;
+  
+  const rowCount = parseInt(rows) || 2;
+  const colCount = parseInt(cols) || 3;
+  
+  let tableHtml = '<table style="border-collapse: collapse; width: 100%; margin: 10px 0;"><tbody>';
+  
+  for (let i = 0; i < rowCount; i++) {
+    tableHtml += '<tr>';
+    for (let j = 0; j < colCount; j++) {
+      tableHtml += '<td style="border: 1px solid #ccc; padding: 8px;">Cell</td>';
+    }
+    tableHtml += '</tr>';
+  }
+  
+  tableHtml += '</tbody></table>';
+  document.execCommand("insertHTML", false, tableHtml);
+  saveContent();
+}
+
+// Image movement functions
+function moveImageUp(event) {
+  event.preventDefault();
+  const imageWrapper = event.target.closest(".image-wrapper");
+  const previousElement = imageWrapper.previousElementSibling;
+  
+  if (previousElement) {
+    imageWrapper.parentNode.insertBefore(imageWrapper, previousElement);
+    saveContent();
+  }
+}
+
+function moveImageDown(event) {
+  event.preventDefault();
+  const imageWrapper = event.target.closest(".image-wrapper");
+  const nextElement = imageWrapper.nextElementSibling;
+  
+  if (nextElement) {
+    imageWrapper.parentNode.insertBefore(nextElement, imageWrapper);
+    saveContent();
+  }
+}
+
+function deleteImage(event) {
+  event.preventDefault();
+  const imageWrapper = event.target.closest(".image-wrapper");
+  imageWrapper.remove();
+  saveContent();
+}
+
 // Tab indentation
 editor.addEventListener("keydown", (e) => {
   if (e.key === "Tab") {
@@ -346,6 +402,22 @@ document
   .addEventListener("click", insertBibliography);
 document.getElementById("printBtn").addEventListener("click", printDocument);
 document.getElementById("exportPdfBtn").addEventListener("click", exportPdf);
+document.getElementById("insertImageBtn").addEventListener("click", insertImage);
+document.getElementById("insertTableBtn").addEventListener("click", insertTable);
+
+// Tab switching
+document.querySelectorAll(".tab-btn").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    // Remove active class from all tabs and content
+    document.querySelectorAll(".tab-btn").forEach((b) => b.classList.remove("active"));
+    document.querySelectorAll(".tab-content").forEach((c) => c.classList.remove("active"));
+
+    // Add active class to clicked tab and its content
+    btn.classList.add("active");
+    const tabId = btn.getAttribute("data-tab");
+    document.getElementById(tabId).classList.add("active");
+  });
+});
 
 editor.addEventListener("focus", () => {
   if (editor.querySelector(".placeholder")) {
@@ -355,6 +427,135 @@ editor.addEventListener("focus", () => {
 
 editor.addEventListener("input", () => {
   saveContent();
+  updateAutocomplete();
+});
+
+// Autocomplete functionality
+const commonWords = [
+  "the", "be", "to", "of", "and", "a", "in", "that", "have", "i", "it", "for", 
+  "not", "on", "with", "he", "as", "you", "do", "at", "this", "but", "his", 
+  "by", "from", "they", "we", "say", "her", "she", "or", "an", "will", "my", 
+  "one", "all", "would", "there", "their", "what", "so", "up", "out", "if", 
+  "about", "who", "get", "which", "go", "me", "when", "make", "can", "like", 
+  "time", "no", "just", "him", "know", "take", "people", "into", "year", "your",
+  "good", "some", "could", "them", "see", "other", "than", "then", "now", "look",
+  "only", "come", "its", "over", "think", "also", "back", "after", "use", "two"
+];
+
+let currentWord = "";
+let autocompleteVisible = false;
+
+function updateAutocomplete() {
+  const selection = window.getSelection();
+  if (selection.rangeCount === 0) return;
+
+  const range = selection.getRangeAt(0);
+  const preCaretRange = range.cloneRange();
+  preCaretRange.selectNodeContents(editor);
+  preCaretRange.setEnd(range.endContainer, range.endOffset);
+  
+  const text = preCaretRange.toString();
+  const words = text.match(/\b\w+$/);
+  
+  if (!words || words[0].length < 2) {
+    hideAutocomplete();
+    return;
+  }
+
+  currentWord = words[0].toLowerCase();
+  const suggestions = commonWords.filter(w => 
+    w.startsWith(currentWord) && w !== currentWord
+  );
+
+  if (suggestions.length > 0) {
+    showAutocomplete(suggestions, range);
+  } else {
+    hideAutocomplete();
+  }
+}
+
+function showAutocomplete(suggestions, range) {
+  const popup = document.getElementById("autocomplete");
+  popup.innerHTML = "";
+  
+  suggestions.slice(0, 5).forEach((word) => {
+    const div = document.createElement("div");
+    div.className = "autocomplete-item";
+    
+    const prefix = document.createElement("span");
+    prefix.className = "autocomplete-match";
+    prefix.textContent = currentWord;
+    
+    const suffix = document.createElement("span");
+    suffix.className = "autocomplete-remaining";
+    suffix.textContent = word.slice(currentWord.length);
+    
+    div.appendChild(prefix);
+    div.appendChild(suffix);
+    
+    div.addEventListener("click", () => {
+      acceptAutocomplete(word);
+    });
+    
+    popup.appendChild(div);
+  });
+
+  // Position popup near cursor
+  const rect = range.getBoundingClientRect();
+  popup.style.top = (rect.bottom + window.scrollY) + "px";
+  popup.style.left = rect.left + "px";
+  popup.classList.add("visible");
+  autocompleteVisible = true;
+}
+
+function hideAutocomplete() {
+  const popup = document.getElementById("autocomplete");
+  popup.classList.remove("visible");
+  autocompleteVisible = false;
+}
+
+function acceptAutocomplete(word) {
+  const selection = window.getSelection();
+  const range = selection.getRangeAt(0);
+  
+  // Delete current word
+  const preCaretRange = range.cloneRange();
+  preCaretRange.selectNodeContents(editor);
+  preCaretRange.setEnd(range.endContainer, range.endOffset);
+  const text = preCaretRange.toString();
+  const words = text.match(/\b\w+$/);
+  
+  if (words) {
+    range.setStart(range.endContainer, range.endOffset - words[0].length);
+    range.deleteContents();
+  }
+  
+  // Insert completed word
+  range.insertNode(document.createTextNode(word));
+  range.setStartAfter(range.endContainer.lastChild);
+  range.collapse(true);
+  selection.removeAllRanges();
+  selection.addRange(range);
+  
+  editor.focus();
+  hideAutocomplete();
+  saveContent();
+}
+
+// Keyboard shortcuts for autocomplete
+editor.addEventListener("keydown", (e) => {
+  if (!autocompleteVisible) return;
+  
+  if (e.key === "Tab" || e.key === "Enter") {
+    e.preventDefault();
+    const firstSuggestion = document.querySelector(".autocomplete-item");
+    if (firstSuggestion) {
+      const text = firstSuggestion.textContent;
+      acceptAutocomplete(text);
+    }
+  } else if (e.key === "Escape") {
+    hideAutocomplete();
+  }
 });
 
 // Initialize
