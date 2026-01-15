@@ -9,94 +9,131 @@
 </head>
 
 <body>
-  <button id="settingsToggle" class="settings-toggle">⚙</button>
+  <button id="settingsToggle" class="settings-toggle">Settings</button>
 
   <div id="settingsModal" class="settings-modal">
     <div class="settings-content">
-      <h3>Settings</h3>
+      <div class="settings-header">
+        <h2>Settings</h2>
+        <button id="closeSettingsBtn" class="close-btn">Close</button>
+      </div>
 
-      <div class="settings-row">
-        <label>Theme</label>
-        <div class="theme-toggle">
-          <button class="theme-btn active" id="darkThemeBtn" data-theme="dark">Dark</button>
-          <button class="theme-btn" id="lightThemeBtn" data-theme="light">Light</button>
+      <div class="settings-tabs">
+        <button class="tab-btn active" data-tab="appearance">Appearance</button>
+        <button class="tab-btn" data-tab="content">Content</button>
+        <button class="tab-btn" data-tab="references">References</button>
+        <button class="tab-btn" data-tab="export">Export</button>
+      </div>
+
+      <!-- Appearance Tab -->
+      <div id="appearance" class="tab-content active">
+        <div class="settings-group">
+          <label for="themeSelect">Theme</label>
+          <select id="themeSelect">
+            <option value="dark">Dark</option>
+            <option value="light">Light</option>
+            <option value="rubber-ducky">Duck</option>
+            <option value="pinetop">Pine</option>
+            <option value="ocean-breeze">Ocean</option>
+          </select>
+        </div>
+
+        <div class="settings-group">
+          <label for="fontfamily">Font</label>
+          <select id="fontfamily">
+            <option value="'Times New Roman', serif">Times New Roman</option>
+            <option value="'Segoe UI', Verdana, sans-serif">Sans</option>
+            <option value="'Courier New', monospace">Mono</option>
+            <option value="Georgia, serif">Georgia</option>
+            <option value="'Garamond', serif">Garamond</option>
+            <option value="'Palatino', serif">Palatino</option>
+            <option value="'Trebuchet MS', sans-serif">Trebuchet</option>
+            <option value="'Lucida Console', monospace">Lucida Console</option>
+            <option value="'Playfair Display', serif">Playfair Display</option>
+            <option value="'Lora', serif">Lora</option>
+          </select>
+        </div>
+
+        <div class="settings-group">
+          <label for="fontsize">Font Size: <span id="fontsizeDisplay">18px</span></label>
+          <input type="range" id="fontsize" min="11" max="24" value="18" />
+        </div>
+
+        <div class="settings-group">
+          <label for="linespacing">Line Spacing</label>
+          <select id="linespacing">
+            <option value="1.6">1.6x</option>
+            <option value="1.8" selected>1.8x</option>
+            <option value="2">2x</option>
+            <option value="2.2">2.2x</option>
+          </select>
+        </div>
+
+        <div class="settings-group">
+          <label for="textAlign">Alignment</label>
+          <select id="textAlign">
+            <option value="left">Left</option>
+            <option value="center">Center</option>
+            <option value="right">Right</option>
+            <option value="justify">Justify</option>
+          </select>
         </div>
       </div>
 
-      <div class="settings-row">
-        <label>More Themes</label>
-        <div class="theme-toggle">
-          <button class="theme-btn" id="duckThemeBtn" data-theme="rubber-ducky">Duck</button>
-          <button class="theme-btn" id="pineThemeBtn" data-theme="pinetop">Pine</button>
-          <button class="theme-btn" id="oceanThemeBtn" data-theme="ocean-breeze">Ocean</button>
+      <!-- Content Tab -->
+      <div id="content" class="tab-content">
+        <div class="settings-group">
+          <p class="group-description">Insert media and elements into your document</p>
+          <div class="button-group">
+            <button id="insertImageBtn" class="action-btn">Insert Image</button>
+            <button id="insertTableBtn" class="action-btn">Insert Table</button>
+          </div>
+          <input type="file" id="imageInput" accept="image/*" style="display: none;" />
         </div>
       </div>
 
-      <div class="settings-row">
-        <label for="fontsize">Font Size</label>
-        <input type="range" id="fontsize" min="14" max="24" value="18" />
-        <span id="fontsizeDisplay">18px</span>
-      </div>
+      <!-- References Tab -->
+      <div id="references" class="tab-content">
+        <div class="settings-group">
+          <p class="group-description">Manage sources and citations</p>
+          
+          <div class="subsection">
+            <h4>Citation Format</h4>
+            <div class="button-group">
+              <button class="citation-btn" onclick="insertCitation('APA')">APA</button>
+              <button class="citation-btn" onclick="insertCitation('MLA')">MLA</button>
+              <button class="citation-btn" onclick="insertCitation('Chicago')">Chicago</button>
+              <button class="citation-btn" onclick="insertCitation('Harvard')">Harvard</button>
+            </div>
+          </div>
 
-      <div class="settings-row">
-        <label for="fontfamily">Font</label>
-        <select id="fontfamily">
-          <option value="'Times New Roman', Georgia, serif">Serif</option>
-          <option value="'Segoe UI', Verdana, sans-serif">Sans</option>
-          <option value="'Courier New', monospace">Mono</option>
-          <option value="Georgia, serif">Georgia</option>
-        </select>
-      </div>
+          <div class="subsection">
+            <h4>Sources</h4>
+            <div class="source-input-group">
+              <input
+                type="text"
+                id="sourceInput"
+                placeholder="Add source"
+                maxlength="100"
+              />
+              <button id="addSourceBtn" class="btn-add">+</button>
+            </div>
+            <div class="settings-source-list" id="sourceList"></div>
+          </div>
 
-      <div class="settings-row">
-        <label for="linespacing">Line Spacing</label>
-        <select id="linespacing">
-          <option value="1.6">1.6x</option>
-          <option value="1.8" selected>1.8x</option>
-          <option value="2">2x</option>
-          <option value="2.2">2.2x</option>
-        </select>
-      </div>
-
-      <div class="settings-row">
-        <label for="textAlign">Alignment</label>
-        <select id="textAlign">
-          <option value="left">Left</option>
-          <option value="center">Center</option>
-          <option value="right">Right</option>
-          <option value="justify">Justify</option>
-        </select>
-      </div>
-
-      <h3 style="margin-top: 20px;">Citations</h3>
-      <div class="citation-section">
-        <div class="citation-buttons">
-          <button class="citation-btn" onclick="insertCitation('APA')">APA</button>
-          <button class="citation-btn" onclick="insertCitation('MLA')">MLA</button>
-          <button class="citation-btn" onclick="insertCitation('Chicago')">Chicago</button>
-          <button class="citation-btn" onclick="insertCitation('Harvard')">Harvard</button>
+          <button id="insertBibBtn" class="action-btn">Insert Bibliography</button>
         </div>
       </div>
 
-      <h3>Sources</h3>
-      <div class="settings-sources">
-        <div class="settings-source-input">
-          <input
-            type="text"
-            id="sourceInput"
-            placeholder="Add source"
-            maxlength="100"
-          />
-          <button id="addSourceBtn">+</button>
+      <!-- Export Tab -->
+      <div id="export" class="tab-content">
+        <div class="settings-group">
+          <p class="group-description">Export or print your document</p>
+          <div class="button-group">
+            <button id="printBtn" class="action-btn">Print</button>
+            <button id="exportPdfBtn" class="action-btn">Export PDF</button>
+          </div>
         </div>
-        <div class="settings-source-list" id="sourceList"></div>
-      </div>
-
-      <div class="settings-actions">
-        <button id="insertBibBtn">Insert Bibliography</button>
-        <button id="printBtn">Print</button>
-        <button id="exportPdfBtn">Export PDF</button>
-        <button id="closeSettingsBtn">Close</button>
       </div>
     </div>
   </div>
@@ -131,6 +168,8 @@
       contenteditable="true"
       spellcheck="true"
     ></div>
+
+    <div id="autocomplete" class="autocomplete-popup"></div>
 
     <footer>
       Write by Untitled Toast — local, private, distraction-free
